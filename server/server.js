@@ -45,4 +45,4 @@ process.on('uncaughtException', function(err) {
 
 }
 
-async function startApolloServer()
+startApolloServer()
