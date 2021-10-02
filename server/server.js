@@ -10,14 +10,16 @@ const { authMiddleware } = require('./utils/auth');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-await apolloServer.start();
+
+async function startApolloServer() {
+  const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware
-})
-
-server.applyMiddleware({app});
+  context: authMiddleware,
+});
+ await server.start();
+server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -40,3 +42,4 @@ db.once('open', () => {
 process.on('uncaughtException', function(err) {
   console.log('Caught exception: ' + err);
 });
+}
