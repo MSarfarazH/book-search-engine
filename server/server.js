@@ -11,16 +11,6 @@ const { authMiddleware } = require('./utils/auth');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/book-search-engine-db',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  },
-);
-
 async function startApolloServer() {
 const server = new ApolloServer({
   typeDefs,
